@@ -2,7 +2,7 @@
   "title": "Avalon Pond Cleanups",
   "url": "https://avalonpondcleanups.ca",
   "facebook": "https://www.facebook.com/avalonpondcleanups",
-  "public": false,
+  "public": true,
   "totals": {
     "cleanups": 184,
     "since": 2017,
