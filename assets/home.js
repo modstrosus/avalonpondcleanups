@@ -14,7 +14,7 @@ const rel = p => k => p.kind==='pond' ? k==='pond' : (k==='shore'||k==='others')
 const total = p => p.c.filter(([,k]) => rel(p)(k)).length;
 const countOf = p => { const n = p.c.filter(([y,k]) => rel(p)(k) && (!state.year || y===state.year)).length; return state.year ? n : Math.max(1,n); };
 
-const map = L.map('map',{zoomControl:false,minZoom:5,maxZoom:16,zoomSnap:.5,maxBounds:[[45.6,-70.5],[61.3,-50.0]],maxBoundsViscosity:.8});
+const map = L.map('map',{zoomControl:false,minZoom:5,maxZoom:16,zoomSnap:.5,maxBounds:[[45.6,-70.5],[61.3,-48.5]],maxBoundsViscosity:.8});
 APC.attribution(map);
 const home = L.latLngBounds(onMap.filter(p=>p.kind==='pond'&&p.lng>-53.2&&p.lat>47.2).map(p=>[p.lat,p.lng]));
 map.fitBounds(home, innerWidth<760?{paddingTopLeft:[20,130],paddingBottomRight:[20,90]}:{paddingTopLeft:[340,40],paddingBottomRight:[60,60]});
