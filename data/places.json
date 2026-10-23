@@ -640,6 +640,16 @@
   "note": "outside the Avalon"
  },
  {
+  "id": "badgers-pond",
+  "kind": "pond",
+  "name": "Badgers Pond",
+  "where": "Herring Neck Rd, before Twillingate Island",
+  "lat": 49.60607,
+  "lng": -54.66392,
+  "status": "to-confirm",
+  "note": "Madison: on Herring Neck Rd before Twillingate Island. Pinned to the first pond beside the road from Route 340; Dad to confirm"
+ },
+ {
   "id": "rantem-station-pond",
   "kind": "pond",
   "name": "Rantem Station pond (unnamed)",
@@ -658,6 +668,106 @@
   "lng": -53.86998,
   "status": "confirmed",
   "note": "two small ponds either side of where the old railway turns east, about 1.5 km past the Route 201 junction; confirmed by Dad"
+ },
+ {
+  "id": "twillingate",
+  "kind": "area",
+  "name": "Twillingate beaches and ponds",
+  "where": "",
+  "lat": 49.6443,
+  "lng": -54.7436,
+  "status": "area",
+  "note": "town-level"
+ },
+ {
+  "id": "notre-dame-bay",
+  "kind": "area",
+  "name": "Notre Dame Bay beaches (general)",
+  "where": "",
+  "lat": 49.497,
+  "lng": -54.783,
+  "status": "area",
+  "note": "town-level"
+ },
+ {
+  "id": "placentia",
+  "kind": "area",
+  "name": "Placentia shoreline and Castle Hill",
+  "where": "",
+  "lat": 47.247,
+  "lng": -53.965,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "burin-long-cove",
+  "kind": "area",
+  "name": "Long Cove Beach, Burin",
+  "where": "",
+  "lat": 47.0611,
+  "lng": -55.1819,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "eastport",
+  "kind": "area",
+  "name": "Eastport beaches and trails",
+  "where": "",
+  "lat": 48.6647,
+  "lng": -53.7676,
+  "status": "area",
+  "note": "town-level"
+ },
+ {
+  "id": "dildo",
+  "kind": "area",
+  "name": "Dildo",
+  "where": "",
+  "lat": 47.5714,
+  "lng": -53.5506,
+  "status": "area",
+  "note": "town-level"
+ },
+ {
+  "id": "riverhead",
+  "kind": "area",
+  "name": "Riverhead hillsides, St. Mary's Bay",
+  "where": "",
+  "lat": 46.9935,
+  "lng": -53.4833,
+  "status": "area",
+  "note": "approx."
+ },
+ {
+  "id": "petley",
+  "kind": "area",
+  "name": "Bluffhead Pond, Petley (Random Island)",
+  "where": "",
+  "lat": 48.155,
+  "lng": -53.748,
+  "status": "area",
+  "note": "approx."
+ },
+ {
+  "id": "arnolds-cove",
+  "kind": "area",
+  "name": "Bordeaux Trail beaches, Arnold's Cove",
+  "where": "",
+  "lat": 47.7689,
+  "lng": -53.9918,
+  "status": "area",
+  "note": "town-level"
+ },
+ {
+  "id": "mahers",
+  "kind": "area",
+  "name": "A cabin pond in Mahers",
+  "where": "",
+  "lat": 47.3972,
+  "lng": -53.3617,
+  "status": "area",
+  "note": "approx."
  },
  {
   "id": "topsail-beach",

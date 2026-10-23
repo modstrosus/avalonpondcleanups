@@ -10,12 +10,13 @@ APC.fmt = iso => { if(!iso) return ''; const [y,m,d] = iso.split('-').map(Number
 APC.dm = (v,pos,neg) => { const h=v<0?neg:pos; v=Math.abs(v); let d=Math.floor(v), m=Math.round((v-d)*60); if(m===60){d++;m=0;} return `${d}°${String(m).padStart(2,'0')}′${h}`; };
 APC.dms = (v,pos,neg) => { const h=v<0?neg:pos; v=Math.abs(v); const d=Math.floor(v), mf=(v-d)*60, m=Math.floor(mf), s=Math.min(59,Math.round((mf-m)*60)); return `${d}°${String(m).padStart(2,'0')}′${String(s).padStart(2,'0')}″${h}`; };
 APC.decode = function(str){ let i=0,lat=0,lng=0,out=[]; while(i<str.length){ let b,s=0,r=0; do{b=str.charCodeAt(i++)-63;r|=(b&31)<<s;s+=5}while(b>=32); lat+=(r&1)?~(r>>1):(r>>1); s=0;r=0; do{b=str.charCodeAt(i++)-63;r|=(b&31)<<s;s+=5}while(b>=32); lng+=(r&1)?~(r>>1):(r>>1); out.push([lat/1e5,lng/1e5]); } return out; };
-const SHEET = APC.SHEET = {s:46.85, n:47.98, w:-54.05, e:-52.55};
+const AV = APC.AVALON = {s:46.85, n:47.98, w:-54.05, e:-52.55};   // the Avalon detail data was clipped to this box
 
 const ClipStart = L.Polygon.extend({_updatePath(){ const c=this._renderer._ctx; c.save(); c.beginPath(); for(const part of this._parts){ part.forEach((p,j)=>j?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y)); c.closePath(); } c.clip(); }});
 const ClipEnd = L.Polygon.extend({_updatePath(){ this._renderer._ctx.restore(); }});
 
 const TOWNS=[["St. John's",47.5615,-52.7126,8.5],["Paradise",47.5300,-52.8700,10],["Mount Pearl",47.5190,-52.8058,10],["Conception Bay South",47.5050,-52.9900,9.5],["Torbay",47.6640,-52.7330,10],["Portugal Cove–St. Philip's",47.6150,-52.8650,10.5],["Pouch Cove",47.7650,-52.7660,10],["Goulds",47.4590,-52.7760,11],["Bay Bulls",47.3150,-52.8100,10],["Witless Bay",47.2780,-52.8300,11],["Holyrood",47.3880,-53.1360,9.5],["Ferryland",47.0240,-52.8860,9.5],["Placentia Junction",47.3900,-53.6400,9.5],["Whitbourne",47.4210,-53.5300,10],["Bellevue",47.6380,-53.7800,10],["Spaniard's Bay",47.6200,-53.3350,10],["Bell Island",47.6400,-52.9500,10],["Flatrock",47.7090,-52.7250,11],["Bauline",47.7045,-52.8370,11],["Tors Cove",47.2150,-52.8480,11]];
+const NL_TOWNS=[["Corner Brook",48.9411,-57.9703,6],["Gander",48.9572,-54.5886,6.5],["Grand Falls-Windsor",48.964,-55.6644,6.5],["Twillingate",49.6443,-54.7436,7],["Lewisporte",49.2418,-55.046,8],["Clarenville",48.1881,-54.0557,7.5],["Deer Lake",49.195,-57.3897,7.5],["Stephenville",48.5476,-58.5476,7],["Channel-Port aux Basques",47.5956,-59.1353,7],["St. Anthony",51.3749,-55.6164,7],["Bonavista",48.6318,-53.1041,7.5],["Marystown",47.155,-55.1644,7.5],["Happy Valley-Goose Bay",53.3417,-60.4488,5.5],["Labrador City",52.9606,-66.9366,5.5],["Nain",56.536,-61.719,6],["Botwood",49.1356,-55.3732,8],["Baie Verte",49.9087,-56.1947,8],["Springdale",49.5119,-56.0643,8],["Burgeo",47.6199,-57.6216,8],["Harbour Breton",47.4775,-55.824,8],["Gambo",48.7971,-54.2125,8.5],["Fogo Island",49.6583,-54.1825,8],["Rocky Harbour",49.594,-57.919,8],["Port Saunders",50.662,-57.254,8],["Cartwright",53.694,-56.97,6.5],["Forteau",51.492,-56.948,7.5],["Grand Bank",47.089,-55.755,8],["Glovertown",48.691,-54.035,8.5],["Summerford",49.497,-54.783,9],["Wabush",52.872,-66.891,7.5],["Churchill Falls",53.532,-64.008,6.5],["Hopedale",55.461,-60.233,6.5],["Musgrave Harbour",49.417,-53.964,8.5],["Makkovik",55.047,-59.203,7],["Eastport",48.6647,-53.7676,9],["Burin",47.0828,-55.1753,8.5],["Placentia",47.2705,-53.9051,8.5],["Arnold's Cove",47.7689,-53.9918,9],["Herring Neck",49.6367,-54.6175,10]];
 const MAJOR = new Set(['Trans-Canada Highway','Outer Ring Road','Conception Bay Highway','Salmonier Line','Southern Shore Highway','Veterans Memorial Highway','Robert E. Howlett Memorial Drive']);
 
 /* opts: mine (Set of pond ids Dad cleaned), onMine(id) click handler, highlight (id to draw thicker), names, grid */
@@ -23,11 +24,20 @@ APC.base = function(map, geo, opts={}){
   const decode = APC.decode, esc = APC.esc;
   [['sea',200],['land',210],['lakes',220],['grat',240],['frame',250],['names',580]].forEach(([n,z]) => { if(!map.getPane(n)) map.createPane(n).style.zIndex = z; });
   const seaR = L.canvas({pane:'sea', padding:.4}), landR = L.canvas({pane:'land', padding:.4});
-  const onEdge = ([la,ln]) => Math.abs(la-SHEET.s)<2e-4||Math.abs(la-SHEET.n)<2e-4||Math.abs(ln-SHEET.w)<2e-4||Math.abs(ln-SHEET.e)<2e-4;
+  const nl = geo.nl || null;
+  const FRAME = nl ? nl.sheet : AV;
+  const onEdge = ([la,ln]) => Math.abs(la-AV.s)<2e-4||Math.abs(la-AV.n)<2e-4||Math.abs(ln-AV.w)<2e-4||Math.abs(ln-AV.e)<2e-4;
   const landRings = [...geo.land, ...Object.values(geo.islands).flat()].map(decode);
   const coast = [];
   for(const ring of landRings){ let cur=[]; for(let i=0;i<ring.length;i++){ const a=ring[i], b=ring[(i+1)%ring.length];
     if(onEdge(a)&&onEdge(b)){ if(cur.length>1) coast.push(cur); cur=[]; continue; } if(!cur.length) cur.push(a); cur.push(b); } if(cur.length>1) coast.push(cur); }
+  // the rest of Newfoundland and Labrador: each piece is [ring, gaps]; gaps are runs of segments that are not coastline
+  // (seams against the Avalon detail, the map edge, or the land border with Quebec)
+  if(nl) for(const [enc, gaps] of nl.land){ const r = decode(enc); landRings.push(r); const n = r.length;
+    const bad = i => (gaps||[]).some(([a,b]) => i>=a && i<b); let cur=[];
+    for(let i=0;i<n;i++){ if(bad(i)){ if(cur.length>1) coast.push(cur); cur=[]; continue; } if(!cur.length) cur.push(r[i]); cur.push(r[(i+1)%n]); }
+    if(cur.length>1) coast.push(cur); }
+  if(nl) for(const [k,v] of Object.entries(nl.ponds||{})) if(!geo.ponds[k]) geo.ponds[k]=v;
   const waterRings = [];
   const pondGeo = Object.entries(geo.ponds).map(([id,v]) => { const ll = v.polys.map(poly => poly.map(decode)); ll.forEach(poly => waterRings.push(poly[0])); return [id, ll]; });
 
@@ -39,6 +49,8 @@ APC.base = function(map, geo, opts={}){
   const line = (ll,r,w,c) => paint(L.polyline(ll,{renderer:r,interactive:false,lineJoin:'round',lineCap:'round',smoothFactor:1.5}), () => ({color:css(c),weight:w,opacity:1}));
   for(const [w,c] of SEA_RINGS) for(const l of coast) G.sea.addLayer(line(l,seaR,w,c));
   const landMulti = landRings.map(r => [r]);
+  if(nl) for(const rs of Object.values(nl.neighbours)) for(const r of rs){ const ll = decode(r);
+    G.land.addLayer(paint(L.polygon(ll,{renderer:landR,interactive:false}), () => ({stroke:true,color:css('--m-other-edge'),weight:1,fillColor:css('--m-other'),fillOpacity:1}))); }
   G.land.addLayer(paint(L.polygon(landMulti,{renderer:landR,interactive:false,stroke:false}), () => ({fillColor:css('--m-land'),fillOpacity:1})));
   G.land.addLayer(new ClipStart(landMulti,{renderer:landR,interactive:false}));
   for(const [w,c] of LAND_RINGS){ for(const l of coast) G.land.addLayer(line(l,landR,w,c)); for(const r of waterRings) G.land.addLayer(line([...r,r[0]],landR,w*.62,c)); }
@@ -51,10 +63,14 @@ APC.base = function(map, geo, opts={}){
     const lyr = L.polygon(ll,{pane:'lakes',interactive:isMine&&!!opts.onMine});
     if(isMine){ paint(lyr, () => ({color:css('--blaze'),weight:hi?2.6:1.6,fillColor:css('--m-mine'),fillOpacity:1})); if(opts.onMine) lyr.on('click',() => opts.onMine(id)); G.mine.addLayer(lyr); pondShapes[id]=ll; }
     else G.lakes.addLayer(paint(lyr, () => ({color:css('--m-lake-edge'),weight:1,fillColor:css('--m-lake'),fillOpacity:1}))); }
+  if(nl){ for(const polys of Object.values(nl.lakes)) for(const poly of polys){ const ll = poly.map(decode); if(!ll.length) continue;
+      G.lakes.addLayer(paint(L.polygon(ll,{pane:'lakes',interactive:false}), () => ({color:css('--m-lake-edge'),weight:1,fillColor:css('--m-lake'),fillOpacity:1}))); }
+    for(const b of nl.border||[]) G.roads.addLayer(paint(L.polyline(decode(b),{pane:'lakes',interactive:false}), () => ({color:css('--m-label-2'),weight:1.2,opacity:.7,dashArray:'8 4 2 4'})));
+    for(const [n,ls] of Object.entries(nl.roads||{})) for(const l of ls) G.roads.addLayer(paint(L.polyline(decode(l),{pane:'lakes',interactive:false}), () => ({color:css('--m-road'),weight:n==='Route 340'?1.8:2.2,opacity:.9}))); }
   for(const [n,ls] of Object.entries(geo.roads)) for(const l of ls){ const big = MAJOR.has(n);
     G.roads.addLayer(paint(L.polyline(decode(l),{pane:'lakes',interactive:false}), () => ({color:css(big?'--m-road':'--m-road-2'),weight:big?2.2:1.3,opacity:.9,dashArray:big?null:'5 3'}))); }
 
-  const sheetRing = [[SHEET.s,SHEET.w],[SHEET.n,SHEET.w],[SHEET.n,SHEET.e],[SHEET.s,SHEET.e]];
+  const sheetRing = [[FRAME.s,FRAME.w],[FRAME.n,FRAME.w],[FRAME.n,FRAME.e],[FRAME.s,FRAME.e]];
   G.frame.addLayer(paint(L.polygon([[[89,-179],[89,179],[-89,179],[-89,-179]],sheetRing],{pane:'frame',interactive:false,stroke:false}), () => ({fillColor:css('--m-margin'),fillOpacity:1})));
   G.frame.addLayer(paint(L.polygon(sheetRing,{pane:'frame',interactive:false,fill:false}), () => ({color:css('--m-coast'),weight:5,opacity:.8})));
   G.frame.addLayer(paint(L.polygon(sheetRing,{pane:'frame',interactive:false,fill:false}), () => ({color:css('--m-margin'),weight:2.6,opacity:1})));
@@ -64,15 +80,28 @@ APC.base = function(map, geo, opts={}){
   const NAMES = [...TOWNS.map(([n,la,ln,z]) => lbl([la,ln],esc(n),'town'+(z>=10.5?' sm':''),z)),
     lbl([47.67,-53.09],rot('Conception<br>Bay',-58),'sealbl',8.5,12), lbl([47.86,-53.70],rot('Trinity Bay',-52),'sealbl',8.5,11.5),
     lbl([46.98,-53.74],rot('St. Mary’s Bay',-72),'sealbl',8.5,11.5), lbl([47.30,-52.64],rot('North Atlantic Ocean',-84),'sealbl',8.5,11),
-    lbl([47.16,-53.30],'Avalon Peninsula','peninsula',8.5,10.5)];
+    lbl([47.16,-53.30],'Avalon Peninsula','peninsula',7.5,10.5),
+    ...(nl ? [
+      ...NL_TOWNS.map(([n,la,ln,z]) => lbl([la,ln],esc(n),'town'+(z>=8?' sm':''),z)),
+      lbl([48.75,-56.2],'Newfoundland','region',5,7.5), lbl([54.2,-62.2],'Labrador','region',4,7.5),
+      lbl([52.6,-70.2],'Québec','other',4,8), lbl([46.05,-60.9],'Nova Scotia','other',5,8),
+      lbl([46.85,-56.35],rot('St-Pierre-et-Miquelon<br>(France)',0),'other sm',7,10),
+      lbl([48.4,-60.4],rot('Gulf of St. Lawrence',-20),'sealbl',5,8.5), lbl([56.6,-57.4],rot('Labrador Sea',-30),'sealbl',4,7.5),
+      lbl([48.9,-51.9],rot('North Atlantic Ocean',-70),'sealbl',5,8.5), lbl([49.68,-55.05],'Notre Dame Bay','sealbl',7,10.5),
+      lbl([48.82,-53.45],'Bonavista Bay','sealbl',7,10), lbl([47.25,-54.45],rot('Placentia Bay',-70),'sealbl',7,10),
+      lbl([47.45,-55.7],'Fortune Bay','sealbl',7.5,10), lbl([50.05,-56.65],rot('White Bay',-60),'sealbl',7.5,10),
+      lbl([51.25,-56.95],rot('Strait of Belle Isle',38),'sealbl',6.5,9), lbl([47.25,-59.6],rot('Cabot Strait',-35),'sealbl',6,8.5),
+      lbl([48.45,-58.85],rot('St. George’s Bay',-30),'sealbl',7.5,10), lbl([53.75,-59.3],rot('Lake Melville',-20),'sealbl lake',6.5,9),
+      lbl([47.95,-54.5],rot('Burin Peninsula',-60),'peninsula',7.5,9.5), lbl([50.6,-56.95],rot('Great Northern Peninsula',-55),'peninsula',6.5,8.5),
+    ] : [])];
   for(const p of (opts.pondLabels||[])) G.pondNames.addLayer(L.marker([p.lat,p.lng],{pane:'names',interactive:false,keyboard:false,icon:L.divIcon({className:'',iconSize:[0,0],html:`<div class="lbl pondname">${esc(p.name)}</div>`})}));
 
   const st = {names: opts.names!==false, grid: opts.grid!==false, pondNames: true};
   function updateNames(){ const z=map.getZoom(); G.names.clearLayers(); if(st.names) NAMES.forEach(n => { if(z>=n.minZ&&z<n.maxZ) G.names.addLayer(n.m); });
     const want = st.names && st.pondNames && z>=14; want?map.addLayer(G.pondNames):map.removeLayer(G.pondNames); }
   function drawGrat(){ G.grat.clearLayers(); if(!st.grid) return; const z=map.getZoom();
-    const step = z<9.5?1/6:z<11?1/12:z<12.5?1/30:1/60; const vb = map.getBounds();
-    const s=Math.max(SHEET.s,vb.getSouth()), n=Math.min(SHEET.n,vb.getNorth()), w=Math.max(SHEET.w,vb.getWest()), e=Math.min(SHEET.e,vb.getEast());
+    const step = z<6?2:z<7?1:z<8?.5:z<9.5?1/6:z<11?1/12:z<12.5?1/30:1/60; const vb = map.getBounds();
+    const s=Math.max(FRAME.s,vb.getSouth()), n=Math.min(FRAME.n,vb.getNorth()), w=Math.max(FRAME.w,vb.getWest()), e=Math.min(FRAME.e,vb.getEast());
     if(s>=n||w>=e) return; const sty = {pane:'grat',interactive:false,color:css('--m-grid'),weight:.8,opacity:.38,dashArray:'4 5'};
     const corner = map.latLngToContainerPoint([n,w]);
     const mk = (pt,html) => L.marker(map.containerPointToLatLng(pt),{pane:'grat',interactive:false,keyboard:false,icon:L.divIcon({className:'',iconSize:[0,0],html})});
@@ -84,7 +113,7 @@ APC.base = function(map, geo, opts={}){
   const repaint = () => { painted.forEach(([l,fn]) => l.setStyle(fn())); drawGrat(); };
   matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', repaint);
   updateNames(); drawGrat();
-  return {G, pondShapes, updateNames, drawGrat,
+  return {G, pondShapes, updateNames, drawGrat, frame:FRAME,
     set(k,v){ st[k]=v; if(k==='grid') drawGrat(); else updateNames(); },
     toggle(group,on){ on?map.addLayer(G[group]):map.removeLayer(G[group]); }};
 };

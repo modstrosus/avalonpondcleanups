@@ -125,9 +125,8 @@ def place_page(p):
     facts = (f'<div class="facts"><div class="fact"><b>{s["n"]}</b><span>{word} posted</span></div>'
              f'<div class="fact"><b>{(s["first"] or "—")[:4]}</b><span>first visit</span></div>'
              f'<div class="fact"><b>{(s["last"] or "—")[:4]}</b><span>latest visit</span></div></div>')
-    coords = f'<div class="coords">{dms(p["lat"], "N", "S")} · {dms(p["lng"], "E", "W")}</div>' if p['lat'] < 48.5 else ''
+    coords = f'<div class="coords">{dms(p["lat"], "N", "S")} · {dms(p["lng"], "E", "W")}</div>'
     note = '<div class="note">This pin’s position is still being confirmed.</div>' if p['status'] == 'to-confirm' else ''
-    if p['lat'] >= 48.5: note += '<div class="note">This pond is near Twillingate, off the edge of the Avalon map.</div>'
     body = f'''{head(f"{p['name']} — {site['title']}", desc, f"/ponds/{p['id']}/", og)}<body>
 {topbar('')}
 <main class="page" id="main">

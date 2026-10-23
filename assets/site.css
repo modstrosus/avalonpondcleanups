@@ -5,7 +5,7 @@
   --m-coast:#e4ecd0; --m-rl1:#a9bb92; --m-rl2:#879b74; --m-rl3:#6b7f5d; --m-rl4:#55684b;
   --m-rs1:#5e786b; --m-rs2:#4a6156; --m-rs3:#3a4f46;
   --m-lake:#13211d; --m-lake-edge:#a9bb92; --m-mine:#1c3633;
-  --m-road:#b3a777; --m-road-2:#6f7d5a; --m-grid:#e4ecd0;
+  --m-road:#b3a777; --m-road-2:#6f7d5a; --m-grid:#e4ecd0; --m-other:#1c2620; --m-other-edge:#3d4c41;
   --m-label:#dfe7cb; --m-label-2:#a7b494; --m-sea-label:#7f9a8c; --m-hydro:#b9dccf;
   --blaze:#ff8a3d; --blaze-ink:#1d1a10; --trail:#efe6c8; --check:#ffe27a;
   --paper:#f4f0e3; --paper-2:#e9e4d3; --ink:#1d2a1f; --ink-2:#4f5b4c; --line:#d6cfb9; --accent:#b84d12;
@@ -65,6 +65,10 @@ body.show-check .pin.check{outline:2.5px dashed var(--check);outline-offset:4px}
 .town{font:600 11.5px var(--f-map);letter-spacing:.16em;text-transform:uppercase;color:var(--m-label);text-shadow:0 0 3px var(--m-land),0 0 3px var(--m-land),0 0 6px var(--m-land),0 0 8px var(--m-land)}
 .town.sm{font-size:10px;font-weight:500;color:var(--m-label-2)}
 .sealbl{font:italic 400 14px var(--f-text);letter-spacing:.34em;text-transform:uppercase;color:var(--m-sea-label);text-align:center;line-height:1.5;text-shadow:0 0 4px var(--m-sea),0 0 8px var(--m-sea)}
+.region{font:600 22px var(--f-map);letter-spacing:.7em;text-transform:uppercase;color:rgba(228,236,208,.5);text-shadow:0 0 8px var(--m-land)}
+.other{font:600 13px var(--f-map);letter-spacing:.5em;text-transform:uppercase;color:rgba(167,180,148,.45);text-align:center}
+.other.sm{font-size:10px;letter-spacing:.2em}
+.sealbl.lake{font-size:12px;letter-spacing:.2em;text-shadow:0 0 4px var(--m-land)}
 .peninsula{font:600 15px var(--f-map);letter-spacing:.6em;text-transform:uppercase;color:rgba(228,236,208,.42);text-shadow:0 0 6px var(--m-land)}
 .pondname{font:italic 600 12.5px var(--f-text);color:var(--m-hydro);transform:translate(16px,-50%);text-shadow:0 0 3px var(--m-land),0 0 3px var(--m-land),0 0 6px var(--m-land)}
 .gl{width:max-content;font:500 10.5px var(--f-map);color:var(--m-label-2);letter-spacing:.06em;white-space:nowrap;pointer-events:none;transform:translate(-50%,0);opacity:.85}

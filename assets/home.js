@@ -7,18 +7,18 @@ try{ [idx, geo] = await Promise.all([fetch('/data/index.json').then(r=>r.json())
 catch(e){ $('#loading').textContent = 'The map didn’t load. Reload the page to try again.'; return; }
 $('#loading').remove();
 const places = idx.places, byId = Object.fromEntries(places.map(p=>[p.id,p]));
-const onMap = places.filter(p => p.lat < 48.5);
+const onMap = places;
 const ponds = places.filter(p => p.kind==='pond'), areas = places.filter(p => p.kind==='area');
 const state = {year:null};
 const rel = p => k => p.kind==='pond' ? k==='pond' : (k==='shore'||k==='others');
 const total = p => p.c.filter(([,k]) => rel(p)(k)).length;
 const countOf = p => { const n = p.c.filter(([y,k]) => rel(p)(k) && (!state.year || y===state.year)).length; return state.year ? n : Math.max(1,n); };
 
-const map = L.map('map',{zoomControl:false,minZoom:8.5,maxZoom:16,zoomSnap:.5,maxBounds:[[46.55,-54.45],[48.25,-52.15]],maxBoundsViscosity:.8});
+const map = L.map('map',{zoomControl:false,minZoom:5,maxZoom:16,zoomSnap:.5,maxBounds:[[45.6,-70.5],[61.3,-50.0]],maxBoundsViscosity:.8});
 APC.attribution(map);
 const home = L.latLngBounds(onMap.filter(p=>p.kind==='pond'&&p.lng>-53.2&&p.lat>47.2).map(p=>[p.lat,p.lng]));
 map.fitBounds(home, innerWidth<760?{paddingTopLeft:[20,130],paddingBottomRight:[20,90]}:{paddingTopLeft:[340,40],paddingBottomRight:[60,60]});
-const base = APC.base(map, geo, {mine:new Set(ponds.map(p=>p.id)), onMine:id=>openPlace(id), pondLabels:ponds.filter(p=>p.lat<48.5)});
+const base = APC.base(map, geo, {mine:new Set(ponds.map(p=>p.id)), onMine:id=>openPlace(id), pondLabels:ponds});
 
 // pins
 const pinSize = n => Math.round(22+Math.min(18,Math.sqrt(n)*4.5));
@@ -72,7 +72,7 @@ const setSel = () => Object.entries(markers).forEach(([id,m]) => m.getElement()?
 const getPage = id => pages[id] || (pages[id] = fetch(`/ponds/${id}/`).then(r=>r.text()).then(t=>new DOMParser().parseFromString(t,'text/html')));
 async function openPlace(id, opts={}){
   const p = byId[id]; if(!p) return; current = id; setSel();
-  if(p.lat<48.5 && !opts.noFly){ const z=Math.max(map.getZoom(), p.kind==='pond'?14:13);
+  if(!opts.noFly){ const z=Math.max(map.getZoom(), p.kind==='pond'?14:13);
     const small=innerWidth<760; const target=map.project([p.lat,p.lng],z).add([small?0:Math.min(440,innerWidth*.42)/2, small?innerHeight*.22:0]);
     map.once('moveend',()=>{ if(current===id) setSel(); }); map.flyTo(map.unproject(target,z),z,{duration:.6}); }
   const isPond = p.kind==='pond';

@@ -3,9 +3,8 @@
 const posts = document.querySelector('#posts'); if(posts) APCViewer.wire(posts);
 const el = document.getElementById('minimap'); if(!el) return;
 const id = el.dataset.id, lat = +el.dataset.lat, lng = +el.dataset.lng, kind = el.dataset.kind;
-if(!(lat < 48.5)) { el.innerHTML = '<p style="padding:14px;color:var(--m-label)">This one is near Twillingate, off the edge of the Avalon map.</p>'; return; }
 let geo; try{ geo = await fetch('/data/map.json').then(r=>r.json()); }catch(e){ return; }
-const map = L.map(el,{zoomControl:true,scrollWheelZoom:false,minZoom:8.5,maxZoom:16,zoomSnap:.5,attributionControl:true});
+const map = L.map(el,{zoomControl:true,scrollWheelZoom:false,minZoom:5,maxZoom:16,zoomSnap:.5,attributionControl:true});
 APC.attribution(map);
 const outline = kind==='pond' && geo.ponds[id] ? geo.ponds[id].polys.flat().map(APC.decode).flat() : null;
 if(outline && outline.length) map.fitBounds(L.latLngBounds(outline).pad(1.2), {maxZoom:15});
