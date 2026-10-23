@@ -16,6 +16,8 @@ const countOf = p => { const n = p.c.filter(([y,k]) => rel(p)(k) && (!state.year
 
 const map = L.map('map',{zoomControl:false,minZoom:8.5,maxZoom:16,zoomSnap:.5,maxBounds:[[46.55,-54.45],[48.25,-52.15]],maxBoundsViscosity:.8});
 APC.attribution(map);
+const home = L.latLngBounds(onMap.filter(p=>p.kind==='pond'&&p.lng>-53.2&&p.lat>47.2).map(p=>[p.lat,p.lng]));
+map.fitBounds(home, innerWidth<760?{paddingTopLeft:[20,130],paddingBottomRight:[20,90]}:{paddingTopLeft:[340,40],paddingBottomRight:[60,60]});
 const base = APC.base(map, geo, {mine:new Set(ponds.map(p=>p.id)), onMine:id=>openPlace(id), pondLabels:ponds.filter(p=>p.lat<48.5)});
 
 // pins
@@ -59,8 +61,6 @@ function renderStats(){ const ps = ponds.filter(p=>countOf(p)>0);
     : `<span><b>${idx.totals.cleanups}</b> pond cleanups</span><span><b>${ponds.length}</b> ponds</span><span>since <b>${idx.totals.since}</b></span>`; }
 
 APC.rose($('#rose')); APC.scale(map, $('#scale'));
-const home = L.latLngBounds(onMap.filter(p=>p.kind==='pond'&&p.lng>-53.2&&p.lat>47.2).map(p=>[p.lat,p.lng]));
-map.fitBounds(home, innerWidth<760?{paddingTopLeft:[20,130],paddingBottomRight:[20,90]}:{paddingTopLeft:[340,40],paddingBottomRight:[60,60]});
 $('#zin').onclick = () => map.zoomIn(); $('#zout').onclick = () => map.zoomOut();
 renderLegend(); buildPins(); Object.values(layers).forEach(l=>l.set(l.on));
 if(innerWidth<760) $('#legend').hidden = true;
