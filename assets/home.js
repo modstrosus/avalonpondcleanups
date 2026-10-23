@@ -114,4 +114,5 @@ $('#listBody').onclick = e => { const b=e.target.closest('.item'); if(!b) return
 document.addEventListener('keydown', e => { if(e.key!=='Escape' || document.querySelector('.lb:not([hidden])')) return; if(!list.hidden) list.hidden=true; else if(current) closeSheet(); else if(innerWidth<760) $('#legend').hidden=true; });
 
 const h = location.hash.slice(1); if(h && byId[h]) setTimeout(()=>openPlace(h),300);
+addEventListener('hashchange', () => { const k=location.hash.slice(1); if(k && byId[k] && k!==current) openPlace(k); });
 })();
