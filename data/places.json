@@ -1,0 +1,952 @@
+[
+ {
+  "id": "octagon-pond",
+  "kind": "pond",
+  "name": "Octagon Pond",
+  "where": "Paradise",
+  "lat": 47.525,
+  "lng": -52.88194,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "adams-pond",
+  "kind": "pond",
+  "name": "Adams Pond",
+  "where": "Paradise",
+  "lat": 47.53528,
+  "lng": -52.88667,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "neils-pond",
+  "kind": "pond",
+  "name": "Neils Pond",
+  "where": "Paradise",
+  "lat": 47.52944,
+  "lng": -52.86417,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "topsail-pond",
+  "kind": "pond",
+  "name": "Topsail Pond",
+  "where": "Paradise",
+  "lat": 47.52139,
+  "lng": -52.90333,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "three-island-pond-paradise",
+  "kind": "pond",
+  "name": "Three Island Pond",
+  "where": "Paradise",
+  "lat": 47.50972,
+  "lng": -52.9,
+  "status": "confirmed",
+  "note": "2018 post's own map shows this Paradise pond"
+ },
+ {
+  "id": "three-island-pond-georgetown",
+  "kind": "pond",
+  "name": "Three Island Pond",
+  "where": "Georgetown",
+  "lat": 47.48889,
+  "lng": -53.23194,
+  "status": "confirmed",
+  "note": "2022 post says Georgetown, Conception Bay"
+ },
+ {
+  "id": "bremigens-pond",
+  "kind": "pond",
+  "name": "Bremigens Pond",
+  "where": "Paradise",
+  "lat": 47.51639,
+  "lng": -52.85889,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "three-arm-pond",
+  "kind": "pond",
+  "name": "Three Arm Pond",
+  "where": "Paradise",
+  "lat": 47.49745,
+  "lng": -52.89384,
+  "status": "confirmed",
+  "note": "post says off Peacekeepers Way"
+ },
+ {
+  "id": "paddys-pond",
+  "kind": "pond",
+  "name": "Paddys Pond",
+  "where": "St. John's (off TCH / Fowler's Rd)",
+  "lat": 47.51417,
+  "lng": -52.98556,
+  "status": "confirmed",
+  "note": "big pond near Islander RV; a smaller Paddys Pond 7 km away is not this one"
+ },
+ {
+  "id": "healeys-pond",
+  "kind": "pond",
+  "name": "Healeys Pond (Sunshine Park)",
+  "where": "St. John's (Thorburn Rd)",
+  "lat": 47.57472,
+  "lng": -52.84583,
+  "status": "confirmed",
+  "note": "posts say both St. Phillips and St. John's - same pond"
+ },
+ {
+  "id": "gull-pond-thorburn",
+  "kind": "pond",
+  "name": "Gull Pond",
+  "where": "St. John's (Thorburn Rd, just before Sunshine Park)",
+  "lat": 47.57801,
+  "lng": -52.8344,
+  "status": "confirmed",
+  "note": "confirmed Oct 22, 2026: one of only two Gull Ponds Dad has cleaned; posts calling it Portugal Cove Rd or off Bennett's Rd mean this one"
+ },
+ {
+  "id": "gull-pond-foxtrap",
+  "kind": "pond",
+  "name": "Gull Pond",
+  "where": "St. John's (Foxtrap Access Rd)",
+  "lat": 47.46417,
+  "lng": -52.97556,
+  "status": "confirmed",
+  "note": "confirmed Oct 22, 2026"
+ },
+ {
+  "id": "mitchells-pond-north",
+  "kind": "pond",
+  "name": "Mitchells Pond North",
+  "where": "Portugal Cove-St. Philip's (Bennett's Rd)",
+  "lat": 47.59042,
+  "lng": -52.84825,
+  "status": "confirmed",
+  "note": "not in official database (only Mitchells Pond South is)"
+ },
+ {
+  "id": "nearys-pond",
+  "kind": "pond",
+  "name": "Nearys Pond",
+  "where": "Portugal Cove-St. Philip's",
+  "lat": 47.61028,
+  "lng": -52.84972,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "murrays-pond",
+  "kind": "pond",
+  "name": "Murrays Pond",
+  "where": "Portugal Cove-St. Philip's",
+  "lat": 47.61417,
+  "lng": -52.82,
+  "status": "to-confirm",
+  "note": "official point shares exact coordinates with a Butlers Pond entry - worth a look on the map"
+ },
+ {
+  "id": "hughs-pond",
+  "kind": "pond",
+  "name": "Hughs Pond",
+  "where": "Portugal Cove-St. Philip's",
+  "lat": 47.59417,
+  "lng": -52.84556,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "hogans-pond",
+  "kind": "pond",
+  "name": "Hogans Pond",
+  "where": "Portugal Cove-St. Philip's (Bennett's Rd)",
+  "lat": 47.58333,
+  "lng": -52.85306,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "blast-hole-pond",
+  "kind": "pond",
+  "name": "Blast Hole Pond",
+  "where": "Portugal Cove-St. Philip's",
+  "lat": 47.6431,
+  "lng": -52.8485,
+  "status": "to-confirm",
+  "note": "pond itself isn't mapped; pin is on Blast Hole Pond Road / River - needs dragging onto the pond"
+ },
+ {
+  "id": "powers-pond-thorburn",
+  "kind": "pond",
+  "name": "Powers Pond",
+  "where": "St. John's (off Thorburn Rd)",
+  "lat": 47.56917,
+  "lng": -52.83,
+  "status": "confirmed",
+  "note": "2025 cleanup via Ernest Automotive"
+ },
+ {
+  "id": "powers-pond-mount-pearl",
+  "kind": "pond",
+  "name": "Power's Pond",
+  "where": "Mount Pearl",
+  "lat": 47.5212,
+  "lng": -52.83199,
+  "status": "confirmed",
+  "note": "different pond from the Thorburn Rd one; shoreline cleanups only"
+ },
+ {
+  "id": "withrod-pond",
+  "kind": "pond",
+  "name": "Withrod Pond",
+  "where": "Torbay (Bauline Line)",
+  "lat": 47.66508,
+  "lng": -52.74847,
+  "status": "confirmed",
+  "note": "not in official database"
+ },
+ {
+  "id": "watts-pond",
+  "kind": "pond",
+  "name": "Watts Pond",
+  "where": "Torbay",
+  "lat": 47.67,
+  "lng": -52.73944,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "whiteway-pond",
+  "kind": "pond",
+  "name": "Whiteway Pond",
+  "where": "Torbay",
+  "lat": 47.65735,
+  "lng": -52.76288,
+  "status": "confirmed",
+  "note": "not in official database"
+ },
+ {
+  "id": "great-pond-torbay",
+  "kind": "pond",
+  "name": "Great Pond",
+  "where": "Torbay",
+  "lat": 47.66444,
+  "lng": -52.76528,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "gallows-cove-pond",
+  "kind": "pond",
+  "name": "Gallows Cove Pond",
+  "where": "Torbay",
+  "lat": 47.68028,
+  "lng": -52.72944,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "jones-pond",
+  "kind": "pond",
+  "name": "Jones Pond",
+  "where": "Torbay",
+  "lat": 47.65,
+  "lng": -52.71167,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "duck-pond-bauline",
+  "kind": "pond",
+  "name": "Duck Pond",
+  "where": "Bauline",
+  "lat": 47.70056,
+  "lng": -52.81139,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "shoe-cove-pond",
+  "kind": "pond",
+  "name": "Shoe Cove Pond",
+  "where": "Pouch Cove",
+  "lat": 47.73833,
+  "lng": -52.74306,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "herring-cove-pond",
+  "kind": "pond",
+  "name": "Herring Cove Pond",
+  "where": "Pouch Cove (Marine Park / Jellystone)",
+  "lat": 47.73944,
+  "lng": -52.81083,
+  "status": "to-confirm",
+  "note": "official point is 2 km west of Pouch Cove - confirm it's the campground pond"
+ },
+ {
+  "id": "georges-pond",
+  "kind": "pond",
+  "name": "Georges Pond",
+  "where": "St. John's (Signal Hill)",
+  "lat": 47.5725,
+  "lng": -52.68389,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "oxen-pond",
+  "kind": "pond",
+  "name": "Oxen Pond",
+  "where": "St. John's (MUN Botanical Garden)",
+  "lat": 47.57136,
+  "lng": -52.76255,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "beaver-pond-shea-heights",
+  "kind": "pond",
+  "name": "Beaver Pond",
+  "where": "St. John's (Shea Heights)",
+  "lat": 47.53472,
+  "lng": -52.71556,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "big-punch-bowl-pond",
+  "kind": "pond",
+  "name": "Big Punch Bowl Pond",
+  "where": "St. John's (Blackhead Rd)",
+  "lat": 47.51601,
+  "lng": -52.71772,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "big-pond-three-pond-barrens",
+  "kind": "pond",
+  "name": "Big Pond",
+  "where": "St. John's (Three Pond Barrens, Pippy Park)",
+  "lat": 47.58722,
+  "lng": -52.76861,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "thomas-pond",
+  "kind": "pond",
+  "name": "Thomas Pond",
+  "where": "St. John's",
+  "lat": 47.45667,
+  "lng": -52.92056,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "long-pond-st-johns",
+  "kind": "pond",
+  "name": "Long Pond",
+  "where": "St. John's (near MUN)",
+  "lat": 47.57806,
+  "lng": -52.73222,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "forest-pond",
+  "kind": "pond",
+  "name": "Forest Pond",
+  "where": "Goulds",
+  "lat": 47.45667,
+  "lng": -52.75889,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "second-pond-goulds",
+  "kind": "pond",
+  "name": "Second Pond",
+  "where": "Goulds (Petty Harbour Rd)",
+  "lat": 47.44833,
+  "lng": -52.73222,
+  "status": "confirmed",
+  "note": "confirmed: the Second Pond on Petty Harbour Rd; accessed from two spots (Petty Hr Rd 2018, Donovan's Lane 2020)"
+ },
+ {
+  "id": "fourth-pond-goulds",
+  "kind": "pond",
+  "name": "Fourth Pond",
+  "where": "Goulds",
+  "lat": 47.47611,
+  "lng": -52.76417,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "long-pond-bay-bulls",
+  "kind": "pond",
+  "name": "Long Pond",
+  "where": "Bay Bulls",
+  "lat": 47.31278,
+  "lng": -52.84806,
+  "status": "confirmed",
+  "note": "near the highway"
+ },
+ {
+  "id": "long-pond-cape-pond-rd",
+  "kind": "pond",
+  "name": "Long Pond",
+  "where": "Southern Shore (Cape Pond Rd, past Tors Cove)",
+  "lat": 47.20528,
+  "lng": -52.93444,
+  "status": "to-confirm",
+  "note": "another Long Pond is 4 km away; this one sits beside Yellow Marsh Pond which fits the posts"
+ },
+ {
+  "id": "yellow-marsh-pond",
+  "kind": "pond",
+  "name": "Yellow Marsh Pond",
+  "where": "Southern Shore (Cape Pond Rd, past Tors Cove)",
+  "lat": 47.2049,
+  "lng": -52.94628,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "lower-pond-witless-bay",
+  "kind": "pond",
+  "name": "Lower Pond",
+  "where": "Witless Bay",
+  "lat": 47.28361,
+  "lng": -52.81333,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "beaver-pond-cape-broyle",
+  "kind": "pond",
+  "name": "Beaver Pond",
+  "where": "Cape Broyle (about 5 km south)",
+  "lat": 47.04139,
+  "lng": -52.95056,
+  "status": "confirmed",
+  "note": "confirmed Oct 22, 2026"
+ },
+ {
+  "id": "lawrence-pond",
+  "kind": "pond",
+  "name": "Lawrence Pond",
+  "where": "Conception Bay South (Upper Gullies)",
+  "lat": 47.46583,
+  "lng": -53.04806,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "lance-cove-pond",
+  "kind": "pond",
+  "name": "Lance Cove Pond",
+  "where": "Conception Bay South",
+  "lat": 47.47389,
+  "lng": -53.06389,
+  "status": "confirmed",
+  "note": "(not the Bell Island one)"
+ },
+ {
+  "id": "butlers-pond-cbs",
+  "kind": "pond",
+  "name": "Butlers Pond",
+  "where": "Conception Bay South",
+  "lat": 47.51278,
+  "lng": -52.99028,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "bubble-pond",
+  "kind": "pond",
+  "name": "Bubble Pond",
+  "where": "Conception Bay South (Worsley Park)",
+  "lat": 47.53417,
+  "lng": -52.95528,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "topsail-beach-pond",
+  "kind": "pond",
+  "name": "pond at Topsail Beach",
+  "where": "Conception Bay South (Topsail)",
+  "lat": 47.5438,
+  "lng": -52.9179,
+  "status": "to-confirm",
+  "note": "the pond behind Topsail Beach has no name on the map; post #304's \"popular swimming hole near Topsail beach\" may be this one"
+ },
+ {
+  "id": "four-mile-pond",
+  "kind": "pond",
+  "name": "Four Mile Pond",
+  "where": "Holyrood (TCH exit)",
+  "lat": 47.3366,
+  "lng": -53.10745,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "donnys-pond",
+  "kind": "pond",
+  "name": "Donnys Pond",
+  "where": "Holyrood (TCH exit)",
+  "lat": 47.345,
+  "lng": -53.09528,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "burnt-pine-pond",
+  "kind": "pond",
+  "name": "Burnt Pine Pond",
+  "where": "Holyrood",
+  "lat": 47.40194,
+  "lng": -53.16972,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "kellys-pond",
+  "kind": "pond",
+  "name": "Kellys Pond",
+  "where": "before Butter Pot Park (across the TCH from Round Pond)",
+  "lat": 47.40889,
+  "lng": -53.02139,
+  "status": "confirmed",
+  "note": "confirmed by Madison, Oct 22, 2026"
+ },
+ {
+  "id": "bermuda-lake",
+  "kind": "pond",
+  "name": "Bermuda Lake",
+  "where": "Salmonier Line",
+  "lat": 47.3128,
+  "lng": -53.2478,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "hawco-pond",
+  "kind": "pond",
+  "name": "Hawco Pond",
+  "where": "Deer Park, Salmonier Line",
+  "lat": 47.30472,
+  "lng": -53.29833,
+  "status": "confirmed",
+  "note": "official name Hawcos Pond"
+ },
+ {
+  "id": "junction-pond",
+  "kind": "pond",
+  "name": "Junction Pond",
+  "where": "Placentia Junction",
+  "lat": 47.40611,
+  "lng": -53.53667,
+  "status": "to-confirm",
+  "note": "13 km from Rhodies/Station Ponds - confirm it's the cabin pond"
+ },
+ {
+  "id": "rhodies-pond",
+  "kind": "pond",
+  "name": "Rhodies Pond",
+  "where": "Placentia Junction",
+  "lat": 47.35806,
+  "lng": -53.70694,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "station-pond",
+  "kind": "pond",
+  "name": "Station Pond",
+  "where": "Placentia Junction",
+  "lat": 47.38667,
+  "lng": -53.66861,
+  "status": "confirmed",
+  "note": "near old rail bed"
+ },
+ {
+  "id": "blue-gull-pond",
+  "kind": "pond",
+  "name": "Blue Gull Pond",
+  "where": "TCH at Bellevue / Chance Cove exit",
+  "lat": 47.52972,
+  "lng": -53.77333,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "island-pond-new-harbour",
+  "kind": "pond",
+  "name": "Island Pond",
+  "where": "New Harbour Barrens (Island Pond RV Park)",
+  "lat": 47.58222,
+  "lng": -53.49389,
+  "status": "to-confirm",
+  "note": "another Island Pond 7 km away; confirm the RV park one"
+ },
+ {
+  "id": "ship-cove-pond",
+  "kind": "pond",
+  "name": "Ship Cove Pond",
+  "where": "Port de Grave",
+  "lat": 47.59639,
+  "lng": -53.19611,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "tilton-pond",
+  "kind": "pond",
+  "name": "Tilton Pond",
+  "where": "Spaniards Bay",
+  "lat": 47.62583,
+  "lng": -53.30028,
+  "status": "confirmed",
+  "note": ""
+ },
+ {
+  "id": "moses-pond",
+  "kind": "pond",
+  "name": "Moses Pond",
+  "where": "Twillingate",
+  "lat": 49.60417,
+  "lng": -54.72306,
+  "status": "confirmed",
+  "note": "outside the Avalon"
+ },
+ {
+  "id": "hospital-pond",
+  "kind": "pond",
+  "name": "Hospital Pond",
+  "where": "Twillingate",
+  "lat": 49.65285,
+  "lng": -54.75273,
+  "status": "confirmed",
+  "note": "outside the Avalon"
+ },
+ {
+  "id": "rantem-station-pond",
+  "kind": "pond",
+  "name": "Rantem Station pond (unnamed)",
+  "where": "TCH past Whitbourne, beside the old railway at Rantem Station",
+  "lat": 47.66384,
+  "lng": -53.87562,
+  "status": "confirmed",
+  "note": "long narrow pond hugging the old railway bed, TCH to the northeast; confirmed from Dad's screenshot"
+ },
+ {
+  "id": "crossing-pond",
+  "kind": "pond",
+  "name": "Crossing Pond (and the pond beside it)",
+  "where": "TCH just past the Bellevue turn-off (Route 201)",
+  "lat": 47.64695,
+  "lng": -53.86998,
+  "status": "confirmed",
+  "note": "two small ponds either side of where the old railway turns east, about 1.5 km past the Route 201 junction; confirmed by Dad"
+ },
+ {
+  "id": "topsail-beach",
+  "kind": "area",
+  "name": "Topsail Beach, CBS",
+  "where": "",
+  "lat": 47.53864,
+  "lng": -52.94108,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "topsail-bluff",
+  "kind": "area",
+  "name": "Topsail Bluff lookout, CBS",
+  "where": "",
+  "lat": 47.54468,
+  "lng": -52.91369,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "lance-cove-beach",
+  "kind": "area",
+  "name": "Lance Cove shoreline, CBS",
+  "where": "",
+  "lat": 47.47325,
+  "lng": -53.05999,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "chamberlains",
+  "kind": "area",
+  "name": "Chamberlains shoreline, CBS",
+  "where": "",
+  "lat": 47.5285,
+  "lng": -52.93742,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "manuels-river",
+  "kind": "area",
+  "name": "Manuels River, CBS",
+  "where": "",
+  "lat": 47.50087,
+  "lng": -52.92684,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "cbs",
+  "kind": "area",
+  "name": "Conception Bay South shoreline (general)",
+  "where": "",
+  "lat": 47.51447,
+  "lng": -52.96592,
+  "status": "area",
+  "note": "town-level"
+ },
+ {
+  "id": "portugal-cove-shoreline",
+  "kind": "area",
+  "name": "Portugal Cove shoreline (ferry terminal)",
+  "where": "",
+  "lat": 47.62662,
+  "lng": -52.85766,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "st-philips-beach",
+  "kind": "area",
+  "name": "St. Philip's beach",
+  "where": "",
+  "lat": 47.5976,
+  "lng": -52.889,
+  "status": "area",
+  "note": "approx."
+ },
+ {
+  "id": "pcsp",
+  "kind": "area",
+  "name": "Portugal Cove-St. Philip's (general)",
+  "where": "",
+  "lat": 47.62864,
+  "lng": -52.84709,
+  "status": "area",
+  "note": "town-level"
+ },
+ {
+  "id": "ragged-beach",
+  "kind": "area",
+  "name": "Ragged Beach / Beaches Path, Witless Bay",
+  "where": "",
+  "lat": 47.26071,
+  "lng": -52.81078,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "witless-bay",
+  "kind": "area",
+  "name": "Witless Bay shoreline",
+  "where": "",
+  "lat": 47.27219,
+  "lng": -52.82964,
+  "status": "area",
+  "note": "town-level"
+ },
+ {
+  "id": "bay-bulls",
+  "kind": "area",
+  "name": "Bay Bulls shoreline",
+  "where": "",
+  "lat": 47.31762,
+  "lng": -52.81672,
+  "status": "area",
+  "note": "town-level"
+ },
+ {
+  "id": "holyrood",
+  "kind": "area",
+  "name": "Holyrood shoreline",
+  "where": "",
+  "lat": 47.36452,
+  "lng": -53.14702,
+  "status": "area",
+  "note": "town-level"
+ },
+ {
+  "id": "flatrock",
+  "kind": "area",
+  "name": "Flatrock shoreline",
+  "where": "",
+  "lat": 47.70879,
+  "lng": -52.72485,
+  "status": "area",
+  "note": "town-level"
+ },
+ {
+  "id": "brigus-south",
+  "kind": "area",
+  "name": "Brigus South / East Coast Trail",
+  "where": "",
+  "lat": 47.11504,
+  "lng": -52.8839,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "ferryland",
+  "kind": "area",
+  "name": "Southern Shore beaches (Ferryland / Cape Broyle)",
+  "where": "",
+  "lat": 47.02412,
+  "lng": -52.88648,
+  "status": "area",
+  "note": "town-level"
+ },
+ {
+  "id": "tinkers-point",
+  "kind": "area",
+  "name": "Tinkers Point Path (Mobile to Tors Cove)",
+  "where": "",
+  "lat": 47.21604,
+  "lng": -52.84169,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "waterford-river",
+  "kind": "area",
+  "name": "Waterford River",
+  "where": "",
+  "lat": 47.52559,
+  "lng": -52.7603,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "galway",
+  "kind": "area",
+  "name": "Galway, St. John's",
+  "where": "",
+  "lat": 47.50681,
+  "lng": -52.82901,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "east-white-hills",
+  "kind": "area",
+  "name": "East White Hills, St. John's",
+  "where": "",
+  "lat": 47.60084,
+  "lng": -52.68343,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "three-pond-barrens",
+  "kind": "area",
+  "name": "Three Pond Barrens, St. John's",
+  "where": "",
+  "lat": 47.58225,
+  "lng": -52.77157,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "robert-e-howlett",
+  "kind": "area",
+  "name": "Robert E. Howlett Hwy roadside",
+  "where": "",
+  "lat": 47.49934,
+  "lng": -52.78828,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "st-johns",
+  "kind": "area",
+  "name": "St. John's trails and roadsides (general)",
+  "where": "",
+  "lat": 47.56468,
+  "lng": -52.7067,
+  "status": "area",
+  "note": "town-level"
+ },
+ {
+  "id": "paradise",
+  "kind": "area",
+  "name": "Paradise woods and trails (general)",
+  "where": "",
+  "lat": 47.52559,
+  "lng": -52.87241,
+  "status": "area",
+  "note": "town-level"
+ },
+ {
+  "id": "mount-pearl",
+  "kind": "area",
+  "name": "Mount Pearl",
+  "where": "",
+  "lat": 47.52396,
+  "lng": -52.81166,
+  "status": "area",
+  "note": "town-level"
+ },
+ {
+  "id": "placentia-junction",
+  "kind": "area",
+  "name": "Placentia Junction woods",
+  "where": "",
+  "lat": 47.38254,
+  "lng": -53.66758,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "witless-bay-line",
+  "kind": "area",
+  "name": "Witless Bay Line (TCH overpass)",
+  "where": "",
+  "lat": 47.34277,
+  "lng": -52.94282,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "heavy-tree-rd",
+  "kind": "area",
+  "name": "Heavy Tree Road woods, St. John's",
+  "where": "",
+  "lat": 47.50332,
+  "lng": -52.78903,
+  "status": "area",
+  "note": ""
+ },
+ {
+  "id": "thorburn-rd",
+  "kind": "area",
+  "name": "woods off Thorburn Road",
+  "where": "",
+  "lat": 47.56167,
+  "lng": -52.75004,
+  "status": "area",
+  "note": "approx."
+ }
+]
