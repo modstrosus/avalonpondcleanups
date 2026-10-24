@@ -482,12 +482,12 @@
  {
   "id": "topsail-beach-pond",
   "kind": "pond",
-  "name": "pond at Topsail Beach",
-  "where": "Conception Bay South (Topsail)",
-  "lat": 47.5438,
-  "lng": -52.9179,
-  "status": "to-confirm",
-  "note": "the pond behind Topsail Beach has no name on the map; post #304's \"popular swimming hole near Topsail beach\" may be this one"
+  "name": "Chamberlains Pond",
+  "where": "Topsail Beach, CBS",
+  "lat": 47.53536,
+  "lng": -52.94598,
+  "status": "confirmed",
+  "note": "the only pond right down by Topsail Beach (Dad)"
  },
  {
   "id": "four-mile-pond",
@@ -556,8 +556,8 @@
   "where": "Placentia Junction",
   "lat": 47.40611,
   "lng": -53.53667,
-  "status": "to-confirm",
-  "note": "13 km from Rhodies/Station Ponds - confirm it's the cabin pond"
+  "status": "confirmed",
+  "note": "the Sellars cabin pond (confirmed by Dad)"
  },
  {
   "id": "rhodies-pond",
