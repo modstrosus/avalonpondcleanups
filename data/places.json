@@ -83,11 +83,11 @@
   "id": "paddys-pond",
   "kind": "pond",
   "name": "Paddys Pond",
-  "where": "St. John's (off TCH / Fowler's Rd)",
-  "lat": 47.51417,
-  "lng": -52.98556,
+  "where": "Off the TCH by Paddy's Pond Rd and Fowler's Rd",
+  "lat": 47.47625,
+  "lng": -52.89048,
   "status": "confirmed",
-  "note": "big pond near Islander RV; a smaller Paddys Pond 7 km away is not this one"
+  "note": "the big Paddys Pond by the TCH (posts: near Islander RV, dam area off Fowler's Road); previously pinned to a small Paddys Pond in CBS by mistake"
  },
  {
   "id": "healeys-pond",

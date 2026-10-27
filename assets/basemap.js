@@ -38,14 +38,17 @@ APC.base = function(map, geo, opts={}){
     for(let i=0;i<n;i++){ if(bad(i)){ if(cur.length>1) coast.push(cur); cur=[]; continue; } if(!cur.length) cur.push(r[i]); cur.push(r[(i+1)%n]); }
     if(cur.length>1) coast.push(cur); }
   if(nl) for(const [k,v] of Object.entries(nl.ponds||{})) if(!geo.ponds[k]) geo.ponds[k]=v;
-  const waterRings = [];
-  const pondGeo = Object.entries(geo.ponds).map(([id,v]) => { const ll = v.polys.map(poly => poly.map(decode)); ll.forEach(poly => waterRings.push(poly[0])); return [id, ll]; });
+  const waterRings = [];  // only Dad's ponds and bigger lakes get an echo ring; small ponds stay plain
+  const mineSet = opts.mine || new Set();
+  const span = r => { let a=1e9,b=-1e9,c=1e9,d=-1e9; for(const [la,ln] of r){ a=Math.min(a,la); b=Math.max(b,la); c=Math.min(c,ln); d=Math.max(d,ln); } return Math.max(b-a,(d-c)*.68); };
+  const pondGeo = Object.entries(geo.ponds).map(([id,v]) => { const ll = v.polys.map(poly => poly.map(decode)); ll.forEach(poly => { if(mineSet.has(id) || span(poly[0]) > .006) waterRings.push(poly[0]); }); return [id, ll]; });
 
   const G = {sea:L.layerGroup().addTo(map), land:L.layerGroup().addTo(map), lakes:L.layerGroup().addTo(map), mine:L.layerGroup().addTo(map), roads:L.layerGroup().addTo(map),
     grat:L.layerGroup().addTo(map), frame:L.layerGroup().addTo(map), names:L.layerGroup().addTo(map), pondNames:L.layerGroup()};
   const painted = []; const paint = (lyr,fn) => { lyr.setStyle(fn()); painted.push([lyr,fn]); return lyr; };
-  const SEA_RINGS = [[36,'--m-rs3'],[33.5,'--m-sea'],[24,'--m-rs2'],[21.5,'--m-sea'],[13,'--m-rs1'],[10.5,'--m-sea']];
-  const LAND_RINGS = [[50,'--m-rl4'],[47.5,'--m-land'],[37,'--m-rl3'],[34.5,'--m-land'],[25,'--m-rl2'],[22.5,'--m-land'],[13.5,'--m-rl1'],[11,'--m-land']];
+  const SEA_RINGS = [[26,'--m-rs2'],[23.5,'--m-sea'],[13,'--m-rs1'],[10.5,'--m-sea']];
+  const LAND_RINGS = [[28,'--m-rl3'],[25.5,'--m-land'],[14,'--m-rl1'],[11.5,'--m-land']];
+  const LAKE_RINGS = [[10,'--m-rl2'],[7.5,'--m-land']];
   const line = (ll,r,w,c) => paint(L.polyline(ll,{renderer:r,interactive:false,lineJoin:'round',lineCap:'round',smoothFactor:1.5}), () => ({color:css(c),weight:w,opacity:1}));
   for(const [w,c] of SEA_RINGS) for(const l of coast) G.sea.addLayer(line(l,seaR,w,c));
   const landMulti = landRings.map(r => [r]);
@@ -53,7 +56,8 @@ APC.base = function(map, geo, opts={}){
     G.land.addLayer(paint(L.polygon(ll,{renderer:landR,interactive:false}), () => ({stroke:true,color:css('--m-other-edge'),weight:1,fillColor:css('--m-other'),fillOpacity:1}))); }
   G.land.addLayer(paint(L.polygon(landMulti,{renderer:landR,interactive:false,stroke:false}), () => ({fillColor:css('--m-land'),fillOpacity:1})));
   G.land.addLayer(new ClipStart(landMulti,{renderer:landR,interactive:false}));
-  for(const [w,c] of LAND_RINGS){ for(const l of coast) G.land.addLayer(line(l,landR,w,c)); for(const r of waterRings) G.land.addLayer(line([...r,r[0]],landR,w*.62,c)); }
+  for(const [w,c] of LAND_RINGS) for(const l of coast) G.land.addLayer(line(l,landR,w,c));
+  for(const [w,c] of LAKE_RINGS) for(const r of waterRings) G.land.addLayer(line([...r,r[0]],landR,w,c));
   G.land.addLayer(new ClipEnd(landMulti,{renderer:landR,interactive:false}));
   for(const l of coast) G.land.addLayer(line(l,landR,1.5,'--m-coast'));
 
@@ -66,8 +70,15 @@ APC.base = function(map, geo, opts={}){
   if(nl){ for(const polys of Object.values(nl.lakes)) for(const poly of polys){ const ll = poly.map(decode); if(!ll.length) continue;
       G.lakes.addLayer(paint(L.polygon(ll,{pane:'lakes',interactive:false}), () => ({color:css('--m-lake-edge'),weight:1,fillColor:css('--m-lake'),fillOpacity:1}))); }
     for(const b of nl.border||[]) G.roads.addLayer(paint(L.polyline(decode(b),{pane:'lakes',interactive:false}), () => ({color:css('--m-label-2'),weight:1.2,opacity:.7,dashArray:'8 4 2 4'})));
-    for(const [n,ls] of Object.entries(nl.roads||{})) for(const l of ls) G.roads.addLayer(paint(L.polyline(decode(l),{pane:'lakes',interactive:false}), () => ({color:css('--m-road'),weight:n==='Route 340'?1.8:2.2,opacity:.9}))); }
-  for(const [n,ls] of Object.entries(geo.roads)) for(const l of ls){ const big = MAJOR.has(n);
+    if(!geo.roads2) for(const [n,ls] of Object.entries(nl.roads||{})) for(const l of ls) G.roads.addLayer(paint(L.polyline(decode(l),{pane:'lakes',interactive:false}), () => ({color:css('--m-road'),weight:n==='Route 340'?1.8:2.2,opacity:.9}))); }
+  // full road network by class, each class appearing from its own zoom level
+  const ROAD_CLASSES = {major:{minZ:0,w:2.4,c:'--m-road'}, primary:{minZ:7,w:1.9,c:'--m-road'}, secondary:{minZ:9,w:1.3,c:'--m-road-2'}, tertiary:{minZ:11,w:1,c:'--m-road-2',dash:'4 3'}};
+  const roadTiers = {};
+  if(geo.roads2){ for(const [k,cfg] of Object.entries(ROAD_CLASSES)){ const g = L.layerGroup(); roadTiers[k] = g;
+      for(const l of geo.roads2[k]||[]) g.addLayer(paint(L.polyline(decode(l),{pane:'lakes',interactive:false,smoothFactor:1.2}), () => ({color:css(cfg.c),weight:cfg.w,opacity:.9,dashArray:cfg.dash||null}))); }
+    const syncRoads = () => { const z = map.getZoom(); for(const [k,cfg] of Object.entries(ROAD_CLASSES)){ const g = roadTiers[k]; if(z>=cfg.minZ) G.roads.addLayer(g); else G.roads.removeLayer(g); } };
+    map.on('zoomend', syncRoads); syncRoads(); }
+  if(!geo.roads2) for(const [n,ls] of Object.entries(geo.roads)) for(const l of ls){ const big = MAJOR.has(n);
     G.roads.addLayer(paint(L.polyline(decode(l),{pane:'lakes',interactive:false}), () => ({color:css(big?'--m-road':'--m-road-2'),weight:big?2.2:1.3,opacity:.9,dashArray:big?null:'5 3'}))); }
 
   const sheetRing = [[FRAME.s,FRAME.w],[FRAME.n,FRAME.w],[FRAME.n,FRAME.e],[FRAME.s,FRAME.e]];
@@ -143,6 +154,6 @@ APC.shapeSVG = function(ll, name){ if(!ll) return ''; const pts=ll.flat(2); let 
   const w=b-a||1e-6, h=d-c||1e-6, sc=Math.min(260/w,92/h), ox=(320-w*sc)/2, oy=(136-h*sc)/2; let k=0;
   const path=ll.map(poly=>poly.map(ring=>'M'+ring.map(()=>{ const [x,y]=P[k++]; return ((x-a)*sc+ox).toFixed(1)+','+((y-c)*sc+oy).toFixed(1);}).join('L')+'Z').join(' ')).join(' ');
   const km=Math.max(w,h)*111.32, len=km<1?`${Math.round(km*100)*10} m`:`${km.toFixed(1)} km`;
-  const echo=[[22,'--m-rl4'],[19.5,'--m-land'],[14,'--m-rl3'],[11.5,'--m-land'],[6,'--m-rl1'],[3.5,'--m-land']].map(([sw,col])=>`<path d="${path}" fill="none" stroke="var(${col})" stroke-width="${sw}" stroke-linejoin="round"/>`).join('');
+  const echo=[[14,'--m-rl3'],[11.5,'--m-land'],[6,'--m-rl1'],[3.5,'--m-land']].map(([sw,col])=>`<path d="${path}" fill="none" stroke="var(${col})" stroke-width="${sw}" stroke-linejoin="round"/>`).join('');
   return `<div class="shapebox"><svg class="shape" viewBox="0 0 320 136" role="img" aria-label="Outline of ${APC.esc(name)}">${echo}<path d="${path}" fill="var(--m-mine)" stroke="var(--blaze)" stroke-width="1.6" fill-rule="evenodd"/></svg><span class="n">N ↑</span><span class="cap">About ${len} end to end</span></div>`; };
 })();
